@@ -27,7 +27,7 @@ function decode(code) {
     }
     
 
-    if (!buckets || buckets.length == 0)
+    if (!buckets || buckets.length === 0)
         return null;
 
     let data = [];
@@ -38,18 +38,18 @@ function decode(code) {
         for (let j = 0; j < bucketList.length; j++) {
             let stageData = bucketList[j].split(/(\d+)/);
             if (stageData[1] > 0)
-                bucketData.push({id: stageData[1], hazardless: (stageData[2] == "h" ? true : false)});
+                bucketData.push({id: stageData[1], hazardless: (stageData[2] === "h")});
         }
         data.push(bucketData);
     }
     
-    if (!(window.location.hash == "" && code == dataMap[Object.keys(dataMap)[0]]))
+    if (!(window.location.hash === "" && code === dataMap[Object.keys(dataMap)[0]]))
         window.location.hash = code;
 
     
     let keys = Object.keys(dataMap);
     for (let i = 0; i < keys.length; i++) {
-        if (dataMap[keys[i]] == code) {
+        if (dataMap[keys[i]] === code) {
             header = keys[i] + "'s Stagelist";
         }
     }
@@ -65,7 +65,6 @@ function init(data) {
 
     let currBucket = 0;
     while (section.getElementsByTagName("div").length < data.length) {
-        // <div id="bucket0" class="has-text-centered"></div><br />
         let newDiv = document.createElement("div");
         newDiv.id = "bucket" + currBucket.toString();
         newDiv.classList.add("has-text-centered");
@@ -78,7 +77,6 @@ function init(data) {
 
     let offset = 0;
     for (let i = 0; i < data.length; i++) {
-        // <h2 class="title is-4">Header</h2><stage /><stage />...
         let bucketHeader = document.createElement("h2");
         bucketHeader.classList.add("title", "is-4");
         bucketHeader.innerHTML = headers[i];
@@ -98,9 +96,9 @@ let preset = initFromDataMap;
 
 //Get the headers for Stage Buckets. If > 2, return undefined, as a list of "Bucket X" will be created instead
 function getHeaders(len) {
-    if (len == 1) {
+    if (len === 1) {
         return ["Starters"];
-    } else if (len == 2) {
+    } else if (len === 2) {
         return ["Starters", "Counterpicks"];
     }
     headers = [];
@@ -114,12 +112,6 @@ function getHeaders(len) {
 function populateStageBucket(bucket, arr, offset) {
     let ret = "";
     for (let i = 0; i < arr.length; i++) {
-        /*  <div class="card stage" onmousedown="toggle(i+offset)">
-                <img src="./img/(i+offset)(h).jpg" class="hazardless?" />
-                <p>Stage Name  ¬</p>
-            </div>
-        */
-        
         let stageDiv = document.createElement("div");
         stageDiv.classList.add("card", "stage");
         stageDiv.onmousedown = function() {
@@ -167,7 +159,7 @@ function loadFromURL() {
 //Redirect to Creation page, with current stageCode.
 function gotoCreate() {
     let stageCode = window.location.hash.replace("#", "");
-    if (window.location.hash == "")
+    if (window.location.hash === "")
         stageCode = dataMap[Object.keys(dataMap)[0]];
     console.log(stageCode);
 	window.location.href = "./create.html#" + stageCode;

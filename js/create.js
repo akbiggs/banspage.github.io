@@ -62,7 +62,7 @@ function removeStage(ind) {
 	let stages = div.getElementsByTagName("article");
 	if (stages.length <= 1 && ind > 2) {
 		bucket.remove();
-		if (ind == currentBucketIndex) {
+		if (ind === currentBucketIndex) {
 			currentBucketIndex -= 1;
 		}
 		setFirstBucketHeaders();
@@ -149,7 +149,7 @@ function validStage(s) {
 // Keep resetting Starter/Counterpick headers
 function setFirstBucketHeaders() {
 	let buckets = document.getElementById("buckets").getElementsByTagName("section").length;
-	if (buckets == 2) {
+	if (buckets === 2) {
 		document.getElementById("bucket1").getElementsByTagName("h2")[0].innerHTML = "Starters";
 		document.getElementById("bucket2").getElementsByTagName("h2")[0].innerHTML = "Counterpicks";
 	} else if (buckets > 2) {
@@ -166,21 +166,21 @@ function generateCode() {
 	let resultString = "";
 	for (let i = 0; i < sections.length; i++) {
 		let bucketString = "";
-		if (i != 0) {
+		if (i !== 0) {
 			bucketString += "_";
 		}
 		
 		let selects = sections[i].getElementsByTagName("div")[0].getElementsByTagName("select");
 		let checkboxes = sections[i].getElementsByTagName("div")[0].getElementsByTagName("input");
 		for (let j = 0; j < selects.length; j++) {
-			if (j != 0) {
+			if (j !== 0) {
 				bucketString += "-";
 			}
 			bucketString += selects[j].value;
 			if (checkboxes[j].checked)
 				bucketString += "h";
 		}
-		if (bucketString.length > 0 && bucketString != "_")
+		if (bucketString.length > 0 && bucketString !== "_")
 			resultString += bucketString;
 	}
 
@@ -199,7 +199,7 @@ function loadBuckets() {
 	let code = window.location.hash.replace("#", "");
 	code = code.replace(/\|/g, "_"); //backwards compatability with | codes
 	let bucketCodes = code.split("_");
-	if (bucketCodes.length == 0)
+	if (bucketCodes.length === 0)
 		return;
 
 	let main = document.getElementById("buckets");
