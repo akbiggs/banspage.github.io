@@ -232,10 +232,6 @@ function loadBuckets() {
 					checkboxes[j].checked = false;
 				}
 			}
-			else {
-				let stageCode = window.location.hash.replace("#", "");
-				window.location.href = "./create.html" + "?nolimits=1#" + stageCode;
-			}
 		}
 	}
 
@@ -269,23 +265,9 @@ function setLimits() {
 
 // Load buckets from URL ?s parameter
 function loadFromURL() {
-	stageCode = window.location.hash.replace("#", "");
-	if (stageCode) {
-    	loadBuckets();
+    stageCode = window.location.hash.replace("#", "");
+    if (stageCode) {
+        loadBuckets();
     }
 }
 
-function preset(key) {
-	let stageCode = dataMap[key];
-	let urlString = window.location.href;
-    let url = new URL(urlString);
-	let nolimits = url.searchParams.get("nolimits");
-	let newURL = "./create.html";
-	if (nolimits)
-		newURL += "?nolimits=1";
-	newURL += "#" + stageCode;
-	console.log(newURL);
-	window.location.href = newURL;
-	console.log(window.location.href);
-	window.location.reload(true);
-}

@@ -155,12 +155,3 @@ function loadFromURL() {
 		initFromDataMap(Object.keys(dataMap)[0]); //load the first code from the dataMap
 	}
 }
-
-//Redirect to Creation page, with current stageCode.
-function gotoCreate() {
-    let stageCode = window.location.hash.replace("#", "");
-    if (window.location.hash === "")
-        stageCode = dataMap[Object.keys(dataMap)[0]];
-    console.log(stageCode);
-	window.location.href = "./create.html#" + stageCode;
-}
