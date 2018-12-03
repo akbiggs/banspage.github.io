@@ -22,6 +22,11 @@ let whitelist = [
     "Umbra Clock Tower", "New Donk City Hall", "Dracula's Castle"
 ];
 
+const legalStages = [
+    "1", "3", "7h", "8", "12h", "17h", "20", "21h", "24", "30", "33h", "35h", "36", "37", "38h", "39",
+    "40h", "42h", "44", "62h", "63", "66", "74h", "77h", "79", "85", "92h", "94h", "100", "103h"
+];
+
 //Set id "presets" to the list of stagelists from DataMap.
 function populateCommunityList() {
     let keys = Object.keys(dataMap);

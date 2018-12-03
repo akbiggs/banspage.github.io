@@ -22,17 +22,19 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/custom.css">
 
+    <script src="./js/utils.js"></script>
     <script src="./js/constants.js"></script>
     <script src="./js/home.js"></script>
      
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129285594-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        function loadRandomStagelist() {
+          let currentUrl = window.location.href;
+          let currentPage = currentUrl.split("#")[0];
 
-      gtag('config', 'UA-129285594-1');
+          let stages = sample(legalStages, 5);
+          window.location.href = currentPage + "#" + stages.join("-");
+          window.location.reload();
+        }
     </script>
 
   </head>
@@ -59,12 +61,6 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Presets</a>
             <div class="navbar-dropdown" id="presets">
-              <!--
-              <a class="navbar-item">SMASHADELPHIA Stagelist</a>
-              <a class="navbar-item">Xanadu Stagelist</a>
-              <a class="navbar-item">2GG's Stagelist</a>
-              <a class="navbar-item">Ori's (Michigan TO) Stagelist</a>
-              -->
             </div>
           </div>
         </div>
@@ -85,6 +81,8 @@
 
       <section class="section has-text-centered">
           <a class="button is-primary is-large" href="./create.html">Create Your Own Stagelist!</a>
+          </br>
+          <button class="button is-primary is-large" onclick="loadRandomStagelist()">Gimmeh random stagelist</button>
       </section>
 
       <ul id="precreated"></ul>
