@@ -54,25 +54,6 @@ function addStage(ind) {
 	div.appendChild(newStage);
 }
 
-// Remove Stage from Bucket
-function removeStage(ind) {
-	let bucket = document.getElementById("bucket" + ind.toString());
-	let div = bucket.getElementsByTagName("div")[0];
-
-	let stages = div.getElementsByTagName("article");
-	if (stages.length <= 1 && ind > 2) {
-		bucket.remove();
-		if (ind === currentBucketIndex) {
-			currentBucketIndex -= 1;
-		}
-		setFirstBucketHeaders();
-		return;
-	} else if (stages.length <= 1) {
-		return;
-	}
-	div.removeChild(stages[stages.length - 1]);
-}
-
 // Create new Bucket
 function addBucket() {
 	/*
@@ -126,18 +107,6 @@ function getSelectInner() {
 		htmlString += "<option value=\"" + realID.toString() + "\">" + sortedList[i] + "</option>\n";
 	}
 	return htmlString;
-}
-
-// Creates first two buckets
-function loadSelects() {
-	addBucket();
-	addBucket();
-	setFirstBucketHeaders();
-
-	let inputs = document.getElementsByTagName("input");
-	for (let i = 0; i < inputs.length; i++) {
-		inputs[i].checked = false;
-	}
 }
 
 // Check if stage is present in whitelist
@@ -239,35 +208,3 @@ function loadBuckets() {
 		document.getElementById("name").value = atob(code.split("n")[1]);
 	}
 }
-
-// Redirect to homepage with stage code
-function createStagelist() {
-	generateCode();
-	let v = window.location.hash.replace("#", "");
-
-	if (v)
-		window.location.href = "./index.html?s=" + v;
-}
-
-// Set page to noLimits if applicable
-function setLimits() {
-	let urlString = window.location.href;
-    let url = new URL(urlString);
-    let nolimits = url.searchParams.get("nolimits");
-    let stageCode = window.location.hash.replace("#", "");
-    if (nolimits) {
-    	whitelist = names;
-    	document.getElementsByTagName("h1")[0].innerHTML = "Create Your Own Stagelist! No limits!";
-    	document.getElementById("unlimited").classList.remove("hidden");
-    	document.getElementById("limited").classList.add("hidden");
-    }
-}
-
-// Load buckets from URL ?s parameter
-function loadFromURL() {
-    stageCode = window.location.hash.replace("#", "");
-    if (stageCode) {
-        loadBuckets();
-    }
-}
-

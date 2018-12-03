@@ -42,26 +42,9 @@
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bans.page">
+        <a class="navbar-item" onclick="window.location.reload()">
           SSBU Stage Selector
         </a>
-    
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-    
-      <div id="navbarBasic" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item" href="./index.html">Home</a>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">Presets</a>
-            <div class="navbar-dropdown" id="presets">
-            </div>
-          </div>
-        </div>
     </nav>
 
     <main>
@@ -76,7 +59,7 @@
       </div>
 
       <section class="section has-text-centered">
-          <button class="button is-primary is-large" onclick="loadRandomStagelist()">Gimmeh random stagelist</button>
+          <a class="button is-primary is-large" onclick="loadRandomStagelist()">Regenerate Stages (debugging)</a>
       </section>
 
       <ul id="precreated"></ul>
@@ -88,7 +71,7 @@
           <div class="column is-8-desktop is-offset-2-desktop">
             <p>
               <strong class="has-text-weight-semibold">
-                <a href="https://bans.page">SSBU Stage Selector</a>
+                <a href="./index.html">SSBU Stage Selector</a>
               </strong>
             </p>
             <p>
@@ -108,6 +91,11 @@
   </body>
 
   <script>
-    loadFromURL();
+      const noStagesSpecified = !window.location.hash;
+      if (noStagesSpecified) {
+          loadRandomStagelist();
+      } else {
+          loadFromURL();
+      }
   </script>
 </html>
