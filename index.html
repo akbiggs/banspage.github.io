@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bans.Page</title>
+    <title>SSBU Stage Selector</title>
     <meta name="description" content="The Bans Page. Ban stages from premade or custom stagelists." />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 
@@ -13,7 +13,7 @@
     <meta name="twitter:card" value="summary">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Bans.Page" />
+    <meta property="og:title" content="SSBU Stage Selector" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://bans.page" />
     <meta property="og:image" content="https://bans.page/img/preview.png" />
@@ -43,7 +43,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bans.page">
-          <img src="img/Logo.png" width="112" height="28">
+          SSBU Stage Selector
         </a>
     
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
@@ -80,8 +80,6 @@
       </div>
 
       <section class="section has-text-centered">
-          <a class="button is-primary is-large" href="./create.html">Create Your Own Stagelist!</a>
-          </br>
           <button class="button is-primary is-large" onclick="loadRandomStagelist()">Gimmeh random stagelist</button>
       </section>
 
@@ -94,12 +92,12 @@
           <div class="column is-8-desktop is-offset-2-desktop">
             <p>
               <strong class="has-text-weight-semibold">
-                <a href="https://bans.page">Bans.Page</a>
+                <a href="https://bans.page">SSBU Stage Selector</a>
               </strong>
             </p>
             <p>
               <small>
-                  <p>Created by <a href="https://twitter.com/WaveParadigm">WaveParadigm</a> and <a href="https://twitter.com/VGInvis">Invis</a></p>
+            <p>Forked from <a href="http://bans.page">Bans.Page</a>.</p>
               </small>
             </p>
             <p style="margin-top: 24px;">
@@ -114,8 +112,6 @@
   </body>
 
   <script>
-    enableNavbarBurgers();
     loadFromURL();
-	  populateCommunityList();
   </script>
 </html>

@@ -15,7 +15,7 @@ function toggle(id) {
 // Output: 2D array of stage objects. Each inner array corresponds to a stage bucket.
 // Example: [ [{id: 1, hazardless: false} ... ], [{id: 3, hazardless: true} ... ], [{id: 56, hazardless: true} ...] ] 
 function decode(code) {
-    let header = "Custom Stagelist";
+    let header = "Stage Selection";
 
     code = code.replace(/\|/g, "_");
     code = code.replace("#", "");
@@ -61,7 +61,6 @@ function decode(code) {
 // Load stage buckets from array of objects
 function init(data) {
     let section = document.getElementById("buckets");
-    let divs = section.getElementsByTagName("div");
     section.innerHTML = ""; //just, completely nuke the buckets section
 
     let currBucket = 0;
