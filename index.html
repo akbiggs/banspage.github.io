@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>SSBU Stage Selector</title>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +14,7 @@
     <script type="module" src="js/constants.js"></script>
     <script type="module" src="js/stage.js"></script>
     <script type="module" src="js/stage_parse.js"></script>
+    <script type="module" src="js/starters_page.js"></script>
   </head>
 
   <body>
@@ -35,7 +35,10 @@
       </div>
 
       <section class="section has-text-centered">
-          <a class="button is-primary is-large" onclick="goToCounterpicks()">Loser: Pick Counterpicks</a>
+          <a id="counterpicks-button"
+             class="button is-primary is-large"
+             onclick="goToCounterpicks()"
+             disabled>Loser: Pick Counterpicks</a>
       </section>
     </main>
 
@@ -55,7 +58,8 @@
             </p>
             <p style="margin-top: 24px;">
               <a href="http://bulma.io">
-                <img src="./img/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
+                <img src="./img/made-with-bulma.png"
+                     alt="Made with Bulma" width="128" height="24">
               </a>
             </p>
           </div>
@@ -65,27 +69,8 @@
   </body>
 
   <script type="module">
-      import {LEGAL_STAGES, CSS_CLASSES} from "./js/constants.js";
-      import {sample} from "./js/utils.js";
-      import {decodeStageListFromString, encodeStageListToString} from "./js/stage_parse.js";
-      import {createStageDiv} from "./js/stage.js";
+      import {initializeStarters} from "./js/starters_page.js";
 
-      const specifiedStageListString = window.location.hash;
-      const stageList =
-          specifiedStageListString
-              ? decodeStageListFromString(specifiedStageListString)
-              : sample(LEGAL_STAGES, 5);
-      window.location.hash = encodeStageListToString(stageList);
-
-      const stageContainer = document.getElementById("stage-container");
-      const stageDivList = stageList.map(createStageDiv);
-      stageDivList.forEach((stageDiv) => {
-          stageDiv.onclick = () => stageDiv.classList.toggle(CSS_CLASSES.STAGE_STRUCK);
-          stageContainer.appendChild(stageDiv);
-      });
-
-      window.goToCounterpicks = () => {
-          window.location.href = "counterpicks.html" + window.location.hash;
-      }
+      initializeStarters();
   </script>
 </html>

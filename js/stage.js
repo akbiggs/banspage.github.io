@@ -1,4 +1,3 @@
-// Indicates that a stage can be striked / unstriked from selection in a match.
 import {STAGE_NAMES} from "./constants.js";
 
 /**
