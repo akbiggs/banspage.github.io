@@ -27,15 +27,16 @@
 
     <main>
       <div class="container has-text-centered">
-        <h1 class="title is-2">SSBU Stage Striking</h1>
-        <p>Click on a stage to strike / unstrike it. Refresh page to reset.</p>
+        <h1 class="title is-2">Loser: Pick Counterpicks</h1>
+        <p>The loser of the previous round selects three stages. The winner will pick the stage for Game 2 from one of these three stages.</p>
       </div>
 
       <div id="stage-container" class="container has-text-centered">
       </div>
 
       <section class="section has-text-centered">
-          <a class="button is-primary is-large" onclick="goToCounterpicks()">Loser: Pick Counterpicks</a>
+        <a class="button is-primary is-large" onclick="promptStageChoice()">Winner: Pick Stage</a>
+        </br>
       </section>
     </main>
 
@@ -66,25 +67,19 @@
 
   <script type="module">
       import {LEGAL_STAGES, CSS_CLASSES} from "./js/constants.js";
-      import {sample} from "./js/utils.js";
-      import {decodeStageListFromString, encodeStageListToString} from "./js/stage_parse.js";
       import {createStageDiv} from "./js/stage.js";
 
-      const specifiedStageListString = window.location.hash;
-      const stageList =
-          specifiedStageListString
-              ? decodeStageListFromString(specifiedStageListString)
-              : sample(LEGAL_STAGES, 5);
-      window.location.hash = encodeStageListToString(stageList);
+      // TODO: Add option to remove stages from the previous game in the URL.
+      const stageList = LEGAL_STAGES;
 
       const stageContainer = document.getElementById("stage-container");
       const stageDivList = stageList.map(createStageDiv);
       stageDivList.forEach((stageDiv) => {
-          stageDiv.onclick = () => stageDiv.classList.toggle(CSS_CLASSES.STAGE_STRUCK);
+          stageDiv.onclick = () => stageDiv.classList.toggle(CSS_CLASSES.STAGE_SELECTED);
           stageContainer.appendChild(stageDiv);
       });
 
-      window.goToCounterpicks = () => {
+      window.promptStageChoice = () => {
           window.location.href = "counterpicks.html" + window.location.hash;
       }
   </script>

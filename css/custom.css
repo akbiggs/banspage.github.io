@@ -50,6 +50,10 @@ main {
     user-select: none;
 }
 
+.stage.selected {
+    background-color: cornflowerblue;
+}
+
 /* Stage Name */
 .stage p {
     padding: 0;
@@ -59,7 +63,7 @@ main {
 }
 
 /* Struck-out Stage */
-.struck {
+.stage.struck img {
     filter: grayscale(100%);
     opacity: 0.65;
 }
