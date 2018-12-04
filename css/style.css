@@ -6,13 +6,6 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Body of the Create Page */
-/*.createBody {
-    background-image: url("bg_inverted.png");
-    background-repeat: repeat;
-    color: white;
-}*/
-
 /* Body of the About Page */
 .about {
     width: 50vw;
@@ -126,11 +119,6 @@ section input + label {
 input:checked + label {
     opacity: 1;
 }
-
-/* Stagelist Creator every-other-section styling POC */
-/*section:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.25);
-}*/
 
 /* Mobile */
 @media only screen and (max-width: 1080px) {
