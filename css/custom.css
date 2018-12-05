@@ -51,7 +51,7 @@ main {
 }
 
 .stage.selected {
-    background-color: cornflowerblue;
+    background-color: cyan;
 }
 
 /* Stage Name */

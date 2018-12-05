@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/custom.css">
 
-    <script type="module" src="js/utils.js"></script>
     <script type="module" src="js/constants.js"></script>
+    <script type="module" src="js/counterpicks_page.js"></script>
     <script type="module" src="js/stage.js"></script>
     <script type="module" src="js/stage_parse.js"></script>
+    <script type="module" src="js/utils.js"></script>
   </head>
 
   <body>
@@ -27,7 +28,9 @@
       </div>
 
       <section class="section has-text-centered">
-        <a class="button is-primary is-large" onclick="promptStageChoice()">Winner: Pick Stage</a>
+        <button id="prompt-stage-button"
+           class="button is-primary is-large"
+           onclick="promptStageChoice()" disabled>Winner: Pick Stage</button>
         </br>
       </section>
     </main>
@@ -58,21 +61,10 @@
   </body>
 
   <script type="module">
-      import {LEGAL_STAGES, CSS_CLASSES} from "./js/constants.js";
-      import {createStageDiv} from "./js/stage.js";
+      import {initializeCounterpicks, promptStageChoice} from "./js/counterpicks_page.js";
 
-      // TODO: Add option to remove stages from the previous game in the URL.
-      const stageList = LEGAL_STAGES;
+      window.promptStageChoice = promptStageChoice;
 
-      const stageContainer = document.getElementById("stage-container");
-      const stageDivList = stageList.map(createStageDiv);
-      stageDivList.forEach((stageDiv) => {
-          stageDiv.onclick = () => stageDiv.classList.toggle(CSS_CLASSES.STAGE_SELECTED);
-          stageContainer.appendChild(stageDiv);
-      });
-
-      window.promptStageChoice = () => {
-          window.location.href = "counterpicks.html" + window.location.hash;
-      }
+      initializeCounterpicks();
   </script>
 </html>

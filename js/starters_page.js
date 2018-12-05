@@ -4,11 +4,12 @@ import {LEGAL_STAGES, CSS_CLASSES} from "./constants.js";
 import {sample} from "./utils.js";
 import {decodeStageListFromString, encodeStageListToString} from "./stage_parse.js";
 import {createStageDiv} from "./stage.js";
+import {updateValueInSearch} from "./url_search_utils.js";
 
 /**
  * Lets the user go to the counterpicks screen if there's only one stage remaining.
  */
-function updateCounterpicksEnabled() {
+function updateCounterpicksButtonEnabled() {
     const stageContainer = document.getElementById("stage-container");
     const counterpicksButton = document.getElementById("counterpicks-button");
     const stageDivList = stageContainer.getElementsByClassName("stage");
@@ -25,7 +26,7 @@ function updateCounterpicksEnabled() {
 
 function strikeStage(stageDiv) {
     stageDiv.classList.toggle(CSS_CLASSES.STAGE_STRUCK);
-    updateCounterpicksEnabled();
+    updateCounterpicksButtonEnabled();
 }
 
 export function initializeStarters() {
@@ -43,11 +44,13 @@ export function initializeStarters() {
         stageContainer.appendChild(stageDiv);
     });
 
-    updateCounterpicksEnabled();
+    // Make sure the button has the right state when the page initializes.
+    updateCounterpicksButtonEnabled();
 }
 
-window.goToCounterpicks = () => {
-    window.location.href = "counterpicks.html" + window.location.hash;
-};
-
-
+export function goToCounterpicks() {
+    const startersString = window.location.hash.substr(1);
+    const counterpicksSearch = updateValueInSearch(
+        window.location.search, "starters", startersString);
+    window.location.href = "counterpicks.html" + counterpicksSearch;
+}

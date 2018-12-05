@@ -9,20 +9,30 @@
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/custom.css">
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/constants.js"></script>
+    <script type="module" src="js/stage.js"></script>
+    <script type="module" src="js/stage_parse.js"></script>
+    <script type="module" src="js/starters_page.js"></script>
+    <script type="module" src="js/url_search_utils.js"></script>
   </head>
 
   <body>
     <main>
       <div class="container has-text-centered">
         <h1 class="title is-2">SSBU Stage Striking</h1>
-        <p>How many games to win?</p>
+        <p>Click on a stage to strike / unstrike it. Refresh page to reset.</p>
+      </div>
+
+      <div id="stage-container" class="container has-text-centered">
       </div>
 
       <section class="section has-text-centered">
-          <button class="button is-primary is-large"
-             onclick="startMatch(MATCH_TYPES.BEST_OF_THREE)">Best of 3</button>
-          <button class="button is-primary is-large is-dark"
-             onclick="startMatch(MATCH_TYPES.BEST_OF_FIVE)">Best of 5</button>
+          <button id="counterpicks-button"
+             class="button is-primary is-large"
+             onclick="goToCounterpicks()"
+             disabled>Loser: Pick Counterpicks</button>
       </section>
     </main>
 
@@ -52,11 +62,10 @@
   </body>
 
   <script type="module">
-      import {MATCH_TYPES} from "./js/constants.js";
+      import {initializeStarters, goToCounterpicks} from "./js/starters_page.js";
 
-      window.MATCH_TYPES = MATCH_TYPES;
-      window.startMatch = (matchType) => {
-          window.location.href = "starters.html?type=" + matchType;
-      };
+      window.goToCounterpicks = goToCounterpicks;
+
+      initializeStarters();
   </script>
 </html>

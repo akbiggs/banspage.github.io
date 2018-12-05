@@ -28,3 +28,8 @@ export const CSS_CLASSES = {
     STAGE_STRUCK: "struck"
 };
 
+export const MATCH_TYPES = {
+    BEST_OF_THREE: "Bo3",
+    BEST_OF_FIVE: "Bo5",
+};
+
