@@ -1,62 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SSBU Stage Selector</title>
+<head>
+  <title>SSBU Stage Selector</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/custom.css">
-  </head>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
 
-  <body>
-    <main>
-      <div class="container has-text-centered">
-        <h1 class="title is-2">SSBU Stage Striking</h1>
-        <p>How many games to win?</p>
+<body>
+<main>
+  <div class="container has-text-centered">
+    <h1 class="title is-2">SSBU Stage Striking</h1>
+    <p>How many games to win?</p>
+  </div>
+
+  <section class="section has-text-centered">
+    <a class="button is-primary is-large"
+       href="starters.html?max_games=3">Best of 3</a>
+    <a class="button is-primary is-large is-dark"
+       href="starters.html?max_games=5">Best of 5</a>
+  </section>
+</main>
+
+<footer class="footer has-text-centered">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-8-desktop is-offset-2-desktop">
+        <p>
+          <strong class="has-text-weight-semibold">
+            <a href="./index.html">SSBU Stage Selector</a>
+          </strong>
+        </p>
+        <p>
+          <small>
+        <p>Forked from <a href="http://bans.page">Bans.Page</a>.</p>
+        </small>
+        </p>
+        <p style="margin-top: 24px;">
+          <a href="http://bulma.io">
+            <img src="./img/made-with-bulma.png" alt="Made with Bulma">
+          </a>
+        </p>
       </div>
-
-      <section class="section has-text-centered">
-          <button class="button is-primary is-large"
-             onclick="startMatch(MATCH_TYPES.BEST_OF_THREE)">Best of 3</button>
-          <button class="button is-primary is-large is-dark"
-             onclick="startMatch(MATCH_TYPES.BEST_OF_FIVE)">Best of 5</button>
-      </section>
-    </main>
-
-    <footer class="footer has-text-centered">
-      <div class="container">
-         <div class="columns">
-          <div class="column is-8-desktop is-offset-2-desktop">
-            <p>
-              <strong class="has-text-weight-semibold">
-                <a href="./index.html">SSBU Stage Selector</a>
-              </strong>
-            </p>
-            <p>
-              <small>
-                <p>Forked from <a href="http://bans.page">Bans.Page</a>.</p>
-              </small>
-            </p>
-            <p style="margin-top: 24px;">
-              <a href="http://bulma.io">
-                <img src="./img/made-with-bulma.png" alt="Made with Bulma">
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
-
-  <script type="module">
-      import {MATCH_TYPES} from "./js/constants.js";
-
-      window.MATCH_TYPES = MATCH_TYPES;
-      window.startMatch = (matchType) => {
-          window.location.href = "starters.html?type=" + matchType;
-      };
-  </script>
+    </div>
+  </div>
+</footer>
+</body>
 </html>

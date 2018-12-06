@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SSBU Stage Selector</title>
+<head>
+  <title>SSBU Stage Selector</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/custom.css">
 
-    <script type="module" src="js/utils.js"></script>
-    <script type="module" src="js/constants.js"></script>
-    <script type="module" src="js/stage.js"></script>
-    <script type="module" src="js/stage_parse.js"></script>
-  </head>
+  <script type="module" src="js/select_stage_page.js"></script>
+  <script type="module" src="js/utils.js"></script>
+  <script type="module" src="js/constants.js"></script>
+  <script type="module" src="js/stage.js"></script>
+  <script type="module" src="js/stage_parse.js"></script>
+</head>
 
-  <body>
-    <main>
-      <div class="container has-text-centered">
-        <h1 class="title is-2">Winner: Pick Stage</h1>
-        <p>The winner of the previous game picks from one of these stages.</p>
+<body>
+<main>
+  <div class="container has-text-centered">
+    <h1 class="title is-2">Winner: Pick Stage</h1>
+    <p>The winner of the previous game picks from one of these stages.</p>
+  </div>
+
+  <div id="stage-container" class="container has-text-centered">
+  </div>
+
+  <section id="next-step-button-container" class="section has-text-centered">
+    <!-- Going home is simple, but has to be a function instead of a
+    direct link because <a>s cannot be disabled. -->
+    <button class="button is-primary is-large"
+            onclick="goToHome()" disabled>Set Over</button>
+    <button id="next-game-button"
+            class="button is-primary is-large"
+            onclick="goToNextGame()" disabled>Next Game</button>
+    </br>
+  </section>
+</main>
+
+<footer class="footer has-text-centered">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-8-desktop is-offset-2-desktop">
+        <p>
+          <strong class="has-text-weight-semibold">
+            <a href="./index.html">SSBU Stage Selector</a>
+          </strong>
+        </p>
+        <p>
+          <small>
+        <p>Forked from <a href="http://bans.page">Bans.Page</a>.</p>
+        </small>
+        </p>
+        <p style="margin-top: 24px;">
+          <a href="http://bulma.io">
+            <img src="./img/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
+          </a>
+        </p>
       </div>
+    </div>
+  </div>
+</footer>
+</body>
 
-      <div id="stage-container" class="container has-text-centered">
-      </div>
+<script type="module">
+    import {initializeCounterpicks, goToHome, goToNextGame, isFinalGame} from "./js/select_stage_page.js";
 
-      <section class="section has-text-centered">
-        <a class="button is-primary is-large" onclick="promptStageChoice()">Stages Selected</a>
-        </br>
-      </section>
-    </main>
+    window.goToHome = goToHome;
+    window.goToNextGame = goToNextGame;
 
-    <footer class="footer has-text-centered">
-      <div class="container">
-         <div class="columns">
-          <div class="column is-8-desktop is-offset-2-desktop">
-            <p>
-              <strong class="has-text-weight-semibold">
-                <a href="./index.html">SSBU Stage Selector</a>
-              </strong>
-            </p>
-            <p>
-              <small>
-                <p>Forked from <a href="http://bans.page">Bans.Page</a>.</p>
-              </small>
-            </p>
-            <p style="margin-top: 24px;">
-              <a href="http://bulma.io">
-                <img src="./img/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
+    initializeCounterpicks();
 
-  <script type="module">
-      import {LEGAL_STAGES, CSS_CLASSES} from "./js/constants";
-      import {createStageDiv} from "./js/stage";
-
-      const stageList = LEGAL_STAGES;
-      const stageContainer = document.getElementById("stage-container");
-      const stageDivList = stageList.map(createStageDiv);
-      stageDivList.forEach((stageDiv) => {
-          stageDiv.onclick = () => stageDiv.classList.toggle(CSS_CLASSES.STAGE_SELECTED);
-          stageContainer.appendChild(stageDiv);
-      });
-
-      window.promptStageChoice = () => {
-          window.location.href = "counterpicks.html" + window.location.hash;
-      }
-  </script>
+    if (isFinalGame()) {
+        const nextGameButton = document.getElementById("next-game-button");
+        nextGameButton.style.display = "none";
+    }
+</script>
 </html>

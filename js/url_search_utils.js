@@ -30,9 +30,19 @@ export function getSearchValue(search, key) {
     return decodeSearchToMap(search)[key];
 }
 
-export function updateValueInSearch(search, key, value) {
-    let map = decodeSearchToMap(search);
-    map[key] = value;
-    return encodeSearchFromMap(map);
+export function getSearchInt(search, key) {
+    return parseInt(getSearchValue(search, key));
+}
+
+export function updateValuesInSearch(search, updateMap) {
+    let searchMap = decodeSearchToMap(search);
+    for (const key in updateMap) {
+        if (updateMap[key] !== undefined) {
+            searchMap[key] = updateMap[key];
+        } else {
+            delete searchMap[key];
+        }
+    }
+    return encodeSearchFromMap(searchMap);
 }
 

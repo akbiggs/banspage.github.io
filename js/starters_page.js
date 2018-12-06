@@ -4,7 +4,7 @@ import {LEGAL_STAGES, CSS_CLASSES} from "./constants.js";
 import {sample} from "./utils.js";
 import {decodeStageListFromString, encodeStageListToString} from "./stage_parse.js";
 import {createStageDiv} from "./stage.js";
-import {updateValueInSearch} from "./url_search_utils.js";
+import {updateValuesInSearch} from "./url_search_utils.js";
 
 /**
  * Lets the user go to the counterpicks screen if there's only one stage remaining.
@@ -50,7 +50,11 @@ export function initializeStarters() {
 
 export function goToCounterpicks() {
     const startersString = window.location.hash.substr(1);
-    const counterpicksSearch = updateValueInSearch(
-        window.location.search, "starters", startersString);
+    const counterpicksSearch = updateValuesInSearch(
+        window.location.search, {
+            starters: startersString,
+            max_choices: 3,
+            game: 2,
+        });
     window.location.href = "counterpicks.html" + counterpicksSearch;
 }

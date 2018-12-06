@@ -1,7 +1,7 @@
 import {Stage} from './stage.js'
 
 const HAZARD_CHARACTER = 'h';
-const STAGE_DELIMITER = '-';
+export const STAGE_DELIMITER = '-';
 
 /**
  * Converts a stage model into a URL-safe string.
@@ -43,6 +43,14 @@ export function encodeStageListToString(stageList) {
     return stageList.map(encodeStageToString).join(STAGE_DELIMITER);
 }
 
+/**
+ * Joins a list of encoded stages into a URL-safe string that can be decoded
+ * using {@link decodeStageListFromString}.
+ * @param {string[]} encodedStageList A list of encoded stages.
+ */
+export function joinEncodedStageList(encodedStageList) {
+    return encodedStageList.join(STAGE_DELIMITER);
+}
 
 /**
  * Parses a list of stages from a string (usually from a URL).
@@ -51,5 +59,9 @@ export function encodeStageListToString(stageList) {
  * @returns {{id: int, hazardless: boolean}[]} The list of parsed stages.
  */
 export function decodeStageListFromString(stageListString) {
+    if (!stageListString) {
+        return [];
+    }
+
     return stageListString.split(STAGE_DELIMITER).map(decodeStageFromString);
 }

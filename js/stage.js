@@ -23,10 +23,11 @@ export function Stage(stageId, hazardless) {
  */
 export function createStageDiv(stage) {
     let stageDiv = document.createElement("div");
+    stageDiv.id = stage.id + (stage.hazardless ? "h" : "");
     stageDiv.classList.add("card", "stage");
 
     let stageImg = document.createElement("img");
-    stageImg.src = "./img/" + stage.id + (stage.hazardless ? "h" : "") + ".jpg";
+    stageImg.src = "./img/" + stageDiv.id + ".jpg";
     if (stage.hazardless) {
         stageImg.classList.add("hazardless");
     }
